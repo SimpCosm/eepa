@@ -13,9 +13,9 @@ using namespace std;
 /*
  * It's simple, just pay attention to number arrange of int/long
  */
-int grids(long grains) {
+int grids(long long grains) {
     int grid = 1;
-    long current = 1;
+    long long current = 1;
     while (grains > current) {
         grid++;
         current = pow(2, grid) - 1;
