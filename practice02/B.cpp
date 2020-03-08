@@ -1,32 +1,33 @@
 #include <iostream>
 using namespace std;
 
-unsigned long arrange(unsigned long m, unsigned long n) {
-    unsigned long result = 1;
+unsigned long long arrange(unsigned long long m, unsigned long long n) {
+    unsigned long long result = 1;
     while (n--)
-        result *= m --;
+        result *= m--;
     return result;
 }
 
-unsigned long compose(unsigned long m, unsigned long n) {
-    if ((n << 1) < m)
+unsigned long long compose(unsigned long long m, unsigned long long n) {
+    if ((n << 1) > m)
         n = m - n;
-    unsigned long result = arrange(m, m - n);
-    while (--n)
+    unsigned long long result = arrange(m, n);
+    do {
         result /= n;
+    } while (--n);
     return result;
 }
 
 int main() {
-  unsigned long a,b,result;
-  char kind;
-  cin>>a>>b>>kind;
-  switch (kind) {
-  case 'P':
-      cout << arrange(a, b) << endl;
-      break;
-  default:
-      cout << compose(a, b) << endl;
-  }
-  return 0;
+    unsigned long long a, b, result;
+    char kind;
+    cin >> a >> b >> kind;
+    if (b == 0 || b == a)
+        result = 1;
+    else if (kind == 'P')
+        result = arrange(a, b);
+    else
+        result = compose(a, b);
+    cout << result;
+    return 0;
 }

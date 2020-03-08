@@ -1,21 +1,17 @@
 #include <iostream>
+#include <map>
 using namespace std;
-
-int wordToNum(const string& str) {
-  if(str == "Rock")
-    return 0;
-  else if(str == "Scissors")
-    return 1;
-  else 
-    return 2;
-}
 
 int main() {
   string player, computer;
+  map<string, int> prority;
+  prority["Rock"] = 0;
+  prority["Scissors"] = 1;
+  prority["Paper"] = 2;
   string sentences[] = {"Continue again!", "You lose!", "You win!"};
   while(cin>>player>>computer) {
-    int p = wordToNum(player);
-    int c = wordToNum(computer);
+    int p = prority[player];
+    int c = prority[computer];
     cout<<sentences[(p-c+3)%3]<<endl;
   }
   return 0;
